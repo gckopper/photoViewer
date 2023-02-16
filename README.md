@@ -3,6 +3,9 @@
 ## About
 
 This is a simple program to view photos, it uses WebView (through the Wails library) to render the images meaning it can render anything a browser can!
+## Requirements to develop and build
+- [Wails](https://github.com/wailsapp/wails) v2.3.1
+- [Go](https://go.dev/) 1.18
 ## Live Development
 
 To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
