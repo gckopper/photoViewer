@@ -32,19 +32,12 @@ func NewApp(file string) *App {
 
 // Array of accepted extensions MUST REMAIN SORTED
 var exts = []string{
-	"avif",
 	"bmp",
 	"gif",
-	"heic",
 	"ico",
 	"jpeg",
 	"jpg",
-	"ora",
 	"png",
-	"psd",
-	"raw",
-	"tif",
-	"tiff",
 	"svg",
 	"webp",
 }
