@@ -11,7 +11,7 @@ and have access to your Go methods, there is also a dev server that runs on http
 to this in your browser, and you can call your Go code from devtools.
 
 ## Test files
-the folder `test-images` conteins images to test format support and etc
+The folder `test-images` conteins images to test format support and etc
 
 ## Building
 
@@ -20,7 +20,7 @@ To build a redistributable, production mode package, use `wails build`.
 ## Features
 - Cross platform
 - IS COOL!
-- You can change modify the frontend and make it look however you prefer!
+- You can change/modify the frontend and make it look however you prefer!
 
 ## Formats
 - Currently supports:
