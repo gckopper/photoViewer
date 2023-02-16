@@ -28,32 +28,25 @@ func NewApp(file string) *App {
 	}
 }
 
-/* type string_vec []string */
-
 // Array of accepted extensions MUST REMAIN SORTED
-var exts = []string{
-	"bmp",
-	"gif",
-	"ico",
-	"jpeg",
-	"jpg",
-	"png",
-	"svg",
-	"webp",
-}
-
-/* func (s string_vec) exists(str string) bool {
-	for txt := range s {
-		if str == s[txt] {
-			return true
-		}
+// Being sorted allows for binary search
+func exts() []string {
+	return []string{
+		"bmp",
+		"gif",
+		"ico",
+		"jpeg",
+		"jpg",
+		"png",
+		"svg",
+		"webp",
 	}
-	return false
-} */
+}
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
+	exts := exts()
 	a.ctx = ctx
 	dir, first := filepath.Split(a.first)
 	if dir == "" {
