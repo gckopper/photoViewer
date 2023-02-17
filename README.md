@@ -46,3 +46,12 @@ To build a redistributable, production mode package, use `wails build`.
 - Unsupported and no plan to support:
     - ORA (not used by anyone?)
     - PSD (Adobe...)
+## Tech Stack
+- Backend
+  - Golang
+    - Wails
+- Frontend
+  - Svelte
+    - Typescript
+    - Vanilla CSS
+    - Vanilla HTML
