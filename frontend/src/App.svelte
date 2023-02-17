@@ -3,13 +3,12 @@
     import {Next, Priv, First} from '../wailsjs/go/main/App.js'
     import {WindowSetTitle} from '../wailsjs/runtime/runtime.js'
 
-  let resultText: string = "loading.png"
+  let base64image: string = "loading.png"
   let format: string = "png"
 
   function processShit(image:Array<string>) {
     format = image[0];
-    resultText = image[1];
-    console.log(resultText);
+    base64image = image[1];
     WindowSetTitle(image[2]);
   }
 
@@ -92,7 +91,7 @@ onMount(() => {
     class="no-border-bs"
     alt="User provided content" on:load={resetScroll} 
     id="logo" 
-    src="data:{format};base64,{resultText}"
+    src="data:{format};base64,{base64image}"
   >
 </main>
 
