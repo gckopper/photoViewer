@@ -34,9 +34,9 @@ To build a redistributable, production mode package, use `wails build`.
     - WEBP (Animeted or not)
     - BMP
     - ICO
+    - APNG
 - Planned support for:
     - JPEG XL (jxl)
-    - APNG
     - RAW
     - AVIF
 - May receive support:
@@ -46,6 +46,26 @@ To build a redistributable, production mode package, use `wails build`.
 - Unsupported and no plan to support:
     - ORA (not used by anyone?)
     - PSD (Adobe...)
+## Comparing PhotoViewer with default Windows Photos
+| Image Format        | PhotoViewer (Win) | Win Photos | Ubuntu Image Viewer |
+|---------------------|-------------------|------------|---------------------| 
+| AVIF (8 or 10 bits) | ❌               | ❌         | ❌                 |
+| BMP                 | ✅               | ✅         | ✅                 |
+| GIF                 | ✅               | ✅         | ✅                 |
+| HEIC                | ❌               | ✅         | ❌                 |
+| ICO (Icon)          | ✅               | ✅         | ✅                 |
+| JPEG                | ✅               | ✅         | ✅                 |
+| ORA (Open Raster)   | ❌               | ❌         | ❌                 |
+| PNG                 | ✅               | ✅         | ✅                 |
+| PNG HDR             | ✅               | ✅         | ✅                 |
+| APNG (Animated PNG) | ✅               | ❌         | ❌                 |
+| PSD (Photoshop)     | ❌               | ❌         | ❌                 |
+| RAW                 | ❌               | ❌         | ❌                 |
+| SVG                 | ✅               | ❌         | ✅                 |
+| TIF (TIFF)          | ❌               | ❌         | ❌ (Sort of)       |
+| WEBP                | ✅               | ❌         | ❌                 |
+| WEBP Animated       | ✅               | ❌         | ❌                 |
+| KRA                 | ❌               | ❌         | ❌                 |
 ## Tech Stack
 - Backend
   - Golang
