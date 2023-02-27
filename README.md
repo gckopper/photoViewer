@@ -24,6 +24,8 @@ To build a redistributable, production mode package, use `wails build`.
 - Cross platform
 - IS COOL!
 - You can change/modify the frontend and make it look however you prefer!
+- PLANNED FEATURES
+  - Context menu option
 
 ## Formats
 - Currently supports:
