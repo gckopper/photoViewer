@@ -54,6 +54,7 @@ func (a *App) startup(ctx context.Context) {
 	}
 	files, err := os.ReadDir(dir)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 	size := 0
@@ -65,8 +66,8 @@ func (a *App) startup(ctx context.Context) {
 			_, exists := sort.Find(len(exts), func(i int) int {
 				return strings.Compare(ext[1:], exts[i])
 			})
-			mime := mime.TypeByExtension(ext)
 			if exists {
+				mime := mime.TypeByExtension(ext)
 				content, err := os.ReadFile(filepath.Join(dir, name))
 				if err != nil {
 					println(err)
@@ -87,7 +88,14 @@ func (a *App) startup(ctx context.Context) {
 	a.imgs = a.imgs[0:size]
 	a.size = len(a.imgs)
 	if a.size == 0 {
-		panic(fmt.Sprintf("Could not find images in this directory.\nDirectory: %s\nFile: %s", dir, first))
+		a.imgs = [][]string{
+			{
+				"image/png",
+				"",
+				"No files in directory",
+			},
+		}
+		a.size = 1
 	}
 }
 
