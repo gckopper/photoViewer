@@ -77,7 +77,8 @@ func main() {
 		Bind: []interface{}{
 			app,
 		},
-		LogLevelProduction: logger.WARNING,
+		EnableFraudulentWebsiteDetection: false,
+		LogLevelProduction:               logger.WARNING,
 	})
 
 	if err != nil {
