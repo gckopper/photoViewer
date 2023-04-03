@@ -50,9 +50,17 @@ func main() {
 	}
 
 	file = path.Clean(file)
+	dir, first := filepath.Split(file)
+	if dir != "" {
+		err := os.Chdir(dir)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+	}
 
 	// Create an instance of the app structure
-	app := NewApp(file)
+	app := NewApp(first)
 
 	// Create application with options
 	err := wails.Run(&options.App{

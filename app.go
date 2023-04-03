@@ -54,11 +54,8 @@ func exts() []string {
 func (a *App) startup(ctx context.Context) {
 	exts := exts()
 	a.ctx = ctx
-	dir, first := filepath.Split(a.first)
-	if dir == "" {
-		dir = "."
-	}
-	files, err := os.ReadDir(dir)
+
+	files, err := os.ReadDir(".")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -74,7 +71,7 @@ func (a *App) startup(ctx context.Context) {
 			})
 			if exists {
 				mime := mime.TypeByExtension(ext)
-				content := filepath.Join(dir, name)
+				content := name
 				image := Image{
 					Mime: mime,
 					Url:  content,
@@ -82,7 +79,7 @@ func (a *App) startup(ctx context.Context) {
 				}
 				a.imgs[size] = image
 				size++
-				if name == first {
+				if name == a.first {
 					a.current = size - 1
 				}
 			}
@@ -113,6 +110,7 @@ func valid(current int, size int) int {
 }
 
 func (a *App) First() Image {
+	fmt.Println(a.imgs)
 	a.current = valid(a.current, a.size)
 	return a.imgs[a.current]
 }
