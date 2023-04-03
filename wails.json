@@ -8,5 +8,7 @@
   "author": {
     "name": "gckopper",
     "email": "41166074+gckopper@users.noreply.github.com"
-  }
+  },
+  "assetdir": ".\\frontend\\dist",
+  "appargs": ".\\\\test-images\\\\"
 }

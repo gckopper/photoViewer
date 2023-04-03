@@ -11,8 +11,6 @@ This is a simple program to view photos, it uses WebView (through the Wails libr
 
 ## Live Development
 
-DISCLAIMER: The following describes development using wails should work, however, IT DOES NOT WORK. I am currently using a release build to test the app. Its annoying, but it gets the job done for now.
-
 To run in live development mode, run `wails dev` in the project directory. This will run a Vite development
 server that will provide very fast hot reload of your frontend changes. If you want to develop in a browser
 and have access to your Go methods, there is also a dev server that runs on <http://localhost:34115>. Connect
