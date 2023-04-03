@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/base64"
 	"fmt"
 	"mime"
 	"os"
@@ -14,10 +13,17 @@ import (
 // App struct
 type App struct {
 	ctx     context.Context
-	imgs    [][]string
+	imgs    []Image
 	size    int
 	current int
 	first   string
+}
+
+// App struct
+type Image struct {
+	Mime string `json:"mime"`
+	Url  string `json:"content"`
+	Name string `json:"name"`
 }
 
 // NewApp creates a new App application struct
@@ -58,7 +64,7 @@ func (a *App) startup(ctx context.Context) {
 		return
 	}
 	size := 0
-	a.imgs = make([][]string, len(files))
+	a.imgs = make([]Image, len(files))
 	for _, v := range files {
 		if !v.IsDir() {
 			name := v.Name()
@@ -68,16 +74,13 @@ func (a *App) startup(ctx context.Context) {
 			})
 			if exists {
 				mime := mime.TypeByExtension(ext)
-				content, err := os.ReadFile(filepath.Join(dir, name))
-				if err != nil {
-					println(err)
+				content := filepath.Join(dir, name)
+				image := Image{
+					Mime: mime,
+					Url:  content,
+					Name: name,
 				}
-				data := base64.StdEncoding.EncodeToString(content)
-				array := make([]string, 3)
-				array[0] = mime
-				array[1] = data
-				array[2] = name
-				a.imgs[size] = array
+				a.imgs[size] = image
 				size++
 				if name == first {
 					a.current = size - 1
@@ -88,30 +91,15 @@ func (a *App) startup(ctx context.Context) {
 	a.imgs = a.imgs[0:size]
 	a.size = len(a.imgs)
 	if a.size == 0 {
-		a.imgs = [][]string{
+		a.imgs = []Image{
 			{
-				"image/png",
-				"",
-				"No files in directory",
+				Mime: "image/png",
+				Url:  "..",
+				Name: "name",
 			},
 		}
 		a.size = 1
 	}
-}
-
-func (a *App) First() []string {
-	a.current = valid(a.current, a.size)
-	return a.imgs[a.current]
-}
-
-func (a *App) Next() []string {
-	a.current = valid(a.current+1, a.size)
-	return a.imgs[a.current]
-}
-
-func (a *App) Priv() []string {
-	a.current = valid(a.current-1, a.size)
-	return a.imgs[a.current]
 }
 
 func valid(current int, size int) int {
@@ -122,4 +110,19 @@ func valid(current int, size int) int {
 		return size - 1
 	}
 	return current
+}
+
+func (a *App) First() Image {
+	a.current = valid(a.current, a.size)
+	return a.imgs[a.current]
+}
+
+func (a *App) Next() Image {
+	a.current = valid(a.current+1, a.size)
+	return a.imgs[a.current]
+}
+
+func (a *App) Priv() Image {
+	a.current = valid(a.current-1, a.size)
+	return a.imgs[a.current]
 }
