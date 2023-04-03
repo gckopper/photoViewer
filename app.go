@@ -38,14 +38,14 @@ func NewApp(file string) *App {
 // Being sorted allows for binary search
 func exts() []string {
 	return []string{
-		"bmp",
-		"gif",
-		"ico",
-		"jpeg",
-		"jpg",
-		"png",
-		"svg",
-		"webp",
+		".bmp",
+		".gif",
+		".ico",
+		".jpeg",
+		".jpg",
+		".png",
+		".svg",
+		".webp",
 	}
 }
 
@@ -67,7 +67,7 @@ func (a *App) startup(ctx context.Context) {
 			name := v.Name()
 			ext := strings.ToLower(filepath.Ext(name))
 			_, exists := sort.Find(len(exts), func(i int) int {
-				return strings.Compare(ext[1:], exts[i])
+				return strings.Compare(ext, exts[i])
 			})
 			if exists {
 				mime := mime.TypeByExtension(ext)
