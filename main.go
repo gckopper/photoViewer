@@ -42,8 +42,17 @@ func (h *FileLoader) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	res.Write(fileData)
 }
 
+func changeDir(dir string) {
+	err := os.Chdir(dir)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}
+
 func main() {
 	var file string
+    var err error
 
 	if len(os.Args) >= 2 {
 		file = os.Args[1]
@@ -51,19 +60,24 @@ func main() {
 
 	file = path.Clean(file)
 	dir, first := filepath.Split(file)
-	if dir != "" {
-		err := os.Chdir(dir)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
+    if dir != "" {
+        changeDir(dir)
+    }
+    fileInfo, err := os.Stat(first)
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
+    if fileInfo.IsDir() {
+        changeDir(first)
+        first = ""
+    }
 
 	// Create an instance of the app structure
 	app := NewApp(first)
 
 	// Create application with options
-	err := wails.Run(&options.App{
+	err = wails.Run(&options.App{
 		Title:  "Photo Viewer",
 		Width:  1024,
 		Height: 768,
