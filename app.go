@@ -110,7 +110,6 @@ func valid(current int, size int) int {
 }
 
 func (a *App) First() Image {
-	fmt.Println(a.imgs)
 	a.current = valid(a.current, a.size)
 	return a.imgs[a.current]
 }

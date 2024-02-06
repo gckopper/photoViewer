@@ -32,7 +32,7 @@ func (h *FileLoader) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	requestedFilename := strings.TrimPrefix(req.URL.Path, "/")
 	ext := filepath.Ext(requestedFilename)
 	mime := mime.TypeByExtension(ext)
-	println("Requesting file:", requestedFilename)
+	//println("Requesting file:", requestedFilename)
 	fileData, err := os.ReadFile(requestedFilename)
 	if err != nil {
 		res.WriteHeader(http.StatusBadRequest)
